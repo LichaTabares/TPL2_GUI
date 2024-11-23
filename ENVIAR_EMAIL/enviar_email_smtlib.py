@@ -6,22 +6,24 @@ de comunicación que utilizan los servidores de correo electrónico para enviar 
 """
 from email.message import EmailMessage #Construir la estructura del email
 import smtplib # conectar con el servidor y enviarlo
+import tkinter as Tk
 from tkinter import *
 from tkinter import messagebox
+from tkinter import ttk
 #Python image Library
 from PIL import ImageTk, Image
 
 "------------INTERFAZ TKINTER------------"
 ventana =Tk()
-ventana.title("ALICACION DE MENSAJERIA")
-ventana.geometry("335x385")
+ventana.title("Aplicación de mensajería")
+ventana.geometry("400x450")
 ventana.resizable(0,0)
 ventana.config(bd=10)
 
-Label(ventana, text="ENVIAR CORREO VIA GMAIL",fg="black",font=("Arial", 15,"bold"),padx=5,pady=5).grid(row=0,column=0,columnspan=2)
+Label(ventana, text="Enviar correo por email",fg="black",font=("Arial", 15,"bold"),padx=5,pady=5).grid(row=0,column=0,columnspan=2)
 
 #Imagen GMAIL
-imagen_gmail=Image.open("D:/EIGHTA/PYTHON-TKINTER/ENVIAR_EMAIL/logo_gmail.png")
+imagen_gmail=Image.open("ESENCIA.PNG")
 nueva_imagen=imagen_gmail.resize((125,84))
 render=ImageTk.PhotoImage(nueva_imagen)
 label_imagen= Label(ventana, image= render)
@@ -32,15 +34,19 @@ label_imagen.grid(row=1,column=0,columnspan=2)
 destinatario=StringVar(ventana)
 asunto=StringVar(ventana)
 
-Label(ventana, text="Mi correo: luisochoa.1495@gmail.com",fg="white",bg="blue",font=("Arial", 10,"bold"),padx=5,pady=5).grid(row=2,column=0,columnspan=2,pady=5)
 
 Label(ventana, text="Destinatario:",fg="black",font=("Arial", 10,"bold"),padx=5,pady=5).grid(row=3,column=0)
 Entry(ventana,textvariable=destinatario, width=34).grid(row=3,column=1)
 
+combobox=ttk.Combobox(ventana, textvariable=destinatario, font=("Arial", 10,"bold"), width=30,
+                                   values=["danielprogramacion53@gmail.com", "studiof443@gmail.com", "programacionsabattini@gmail.com", "fjcoronati@gmail.com", "lafortaleza246@gmail.com"])
+combobox.grid(row=3, column=1)
+combobox.set("fjcoronatti@gmail.com")
+
 Label(ventana, text="Asunto:",fg="black",font=("Arial", 10,"bold"),padx=5,pady=5).grid(row=4,column=0)
 Entry(ventana,textvariable=asunto, width=34).grid(row=4,column=1)
 
-Label(ventana, text="Mensaje:",fg="black",font=("Arial", 10,"bold"),padx=5,pady=5).grid(row=5,column=0)
+Label(ventana, text="Mensaje a enviar:",fg="black",font=("Arial", 10,"bold"),padx=5,pady=5).grid(row=5,column=0)
 mensaje=Text(ventana,height=5,width=28,padx=5,pady=5)
 mensaje.grid(row=5,column=1)
 mensaje.config(font=("Arial", 9),padx=5, pady=5)
@@ -48,7 +54,7 @@ mensaje.config(font=("Arial", 9),padx=5, pady=5)
 
 "------------ENVIO DE CORREO------------"
 def enviar_email():
-    remitente = "luisochoa.1495@gmail.com"
+    remitente = "tabareslisandro5@gmail.com"
     #Estrutura de email
     email = EmailMessage()
     email["From"] = remitente
@@ -57,7 +63,7 @@ def enviar_email():
     email.set_content(str(mensaje.get(1.0, 'end')))
     #Envio de email
     smtp = smtplib.SMTP_SSL("smtp.gmail.com")
-    smtp.login(remitente, "clave-personal")
+    smtp.login(remitente, "wyxupuhcremaktif")
     smtp.sendmail(remitente, destinatario.get(), email.as_string())
     messagebox.showinfo("MENSAJERIA","Mensaje enviado correctamente ")
     smtp.quit()
