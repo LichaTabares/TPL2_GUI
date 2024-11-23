@@ -39,7 +39,7 @@ Label(ventana, text="Destinatario:",fg="black",font=("Arial", 10,"bold"),padx=5,
 Entry(ventana,textvariable=destinatario, width=34).grid(row=3,column=1)
 
 combobox=ttk.Combobox(ventana, textvariable=destinatario, font=("Arial", 10,"bold"), width=30,
-                                   values=["danielprogramacion53@gmail.com", "studiof443@gmail.com", "programacionsabattini@gmail.com", "fjcoronati@gmail.com", "lafortaleza246@gmail.com"])
+                      values=["danielprogramacion53@gmail.com", "studiof443@gmail.com", "programacionsabattini@gmail.com", "fjcoronati@gmail.com", "lafortaleza246@gmail.com"])
 combobox.grid(row=3, column=1)
 combobox.set("fjcoronatti@gmail.com")
 
